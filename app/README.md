@@ -33,3 +33,15 @@ Backend pour une plateforme de recrutement utilisant l'IA générative pour anal
 ```bash
 git clone https://github.com/latifa-code/ai-recruitment-backend.git
 cd ai-recruitment-backend
+## 🔐 Authentification
+
+L’application utilise JWT pour sécuriser les endpoints.
+
+- Login / Register
+- Accès protégé par token
+- Hash des mots de passe avec bcrypt
+## 📧 Notifications
+
+Lorsqu’un candidat est sélectionné pour une offre :
+- Une notification est enregistrée en base
+- Un email automatique est envoyé au candidat
