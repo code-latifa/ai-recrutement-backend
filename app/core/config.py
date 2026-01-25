@@ -23,6 +23,17 @@ class Settings(BaseSettings):
 
     def cors_list(self) -> list[str]:
         return [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip()]
+    
+    # --- OPENAI (Embeddings) ---
+    OPENAI_API_KEY: str
+    EMBEDDING_MODEL: str = Field(default="text-embedding-3-small")
+
+    # --- CHROMA (Vector DB) ---
+    CHROMA_PERSIST_DIR: str = Field(default="./chroma_data")
+    CHROMA_COLLECTION_CVS: str = Field(default="cvs")
+    CHROMA_COLLECTION_OFFRES: str = Field(default="offres")
+
 
 
 settings = Settings()
+

@@ -182,3 +182,123 @@ Dépendances FastAPI pour la protection des routes
  1-cd app
  2-python test_cv_upload.py
  puis aller dans le navigateur et taper  http://localhost:8000 puis tester avec un cv sous format pdf
+
+
+
+## Vector Store & Recherche Sémantique (Membre 4)
+
+Cette partie du backend implémente le **vector store** du projet AI Recruitment.
+Elle permet d’effectuer une **recherche sémantique CV ↔ Offres** à l’aide d’**embeddings** et de **ChromaDB**, afin de fournir une shortlist pertinente au module de matching.
+### Objectifs
+
+* Transformer les **CV** et **offres d’emploi** en représentations vectorielles
+* Stocker ces vecteurs dans une base vectorielle persistante
+* Rechercher les documents les plus similaires (Top-K)
+* Exposer ces fonctionnalités via une API FastAPI
+* Servir de base au module de **matching & explication** (Membre 5)
+
+### ⚙️ Technologies utilisées
+
+* **ChromaDB** – Base de données vectorielle locale
+* **Embeddings ONNX** : `all-MiniLM-L6-v2`
+* FastAPI
+* Stockage persistant sur disque (pas de dépendance cloud)
+
+> Aucun appel à une API externe pour les embeddings
+> ➜ fonctionnement 100 % local
+
+
+### 📁 Fichiers concernés
+
+```text
+app/vector_store/
+ ├── chroma_client.py        # Initialisation du client Chroma
+ ├── text_builders.py        # Conversion JSON → texte
+ ├── indexing.py             # Indexation et recherche sémantique
+ └── test_full_pipeline.py   # Test end-to-end sans API
+```
+
+Les données vectorielles sont persistées automatiquement dans :
+
+```text
+chroma_data/
+```
+
+---
+
+### Configuration (.env)
+
+Ajouter ou vérifier les variables suivantes :
+
+```env
+# --- CHROMA ---
+CHROMA_PERSIST_DIR=./chroma_data
+CHROMA_COLLECTION_CVS=cvs
+CHROMA_COLLECTION_OFFRES=offres
+``
+
+### 📦 Installation spécifique
+
+```bash
+pip install chromadb
+```
+
+⚠️ Lors du premier lancement, le modèle d’embeddings (`~80 MB`) est téléchargé automatiquement.
+
+### Lancer l’API
+
+```bash
+uvicorn app.main:app --reload --port 8000
+```
+
+Documentation Swagger :
+
+```
+http://127.0.0.1:8000/docs
+```
+
+---
+
+### Endpoints exposés
+
+#### CVs
+
+* `POST /cvs/index`
+  Indexer un CV (JSON analysé)
+* `POST /cvs/search-offres`
+  Rechercher les offres les plus pertinentes pour un CV
+
+#### Offres
+
+* `POST /offres/index`
+  Indexer une offre d’emploi
+* `POST /offres/search-cvs`
+  Rechercher les CV les plus pertinents pour une offre
+
+---
+
+### 🧪 Test local (sans passer par l’API)
+
+Depuis la racine du projet :
+
+```bash
+python -m app.vector_store.test_full_pipeline
+```
+
+Ce test :
+
+* indexe plusieurs CV et offres
+* génère les embeddings
+* effectue une recherche Top-K
+* affiche les résultats de similarité
+
+---
+
+### 🧠 Notes techniques
+
+* Les **embeddings** fonctionnent sur du **texte**, pas sur du JSON structuré
+  ➜ les CV et offres sont convertis en texte avant vectorisation.
+* ChromaDB agit comme une **mémoire sémantique**, pas comme un moteur d’IA générative.
+* Le calcul du score final et l’explication IA sont réalisés dans le module de **matching** (Membre 5).
+
+

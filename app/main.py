@@ -6,6 +6,8 @@ from app.utils.logger import setup_logging
 
 # Routers (certains peuvent être encore vides)
 from app.api.auth import router as auth_router
+from app.api.cv import router as cv_router          # ✅ AJOUT
+from app.api.offres import router as offres_router  # ✅ AJOUT
 # from app.api.candidats import router as candidats_router
 # from app.api.recruteurs import router as recruteurs_router
 # from app.api.offres import router as offres_router
@@ -49,6 +51,8 @@ def health():
 # API Routers
 # -------------------------------------------------
 app.include_router(auth_router)
+app.include_router(cv_router)          # ✅ AJOUT
+app.include_router(offres_router)      # ✅ AJOUT
 #app.include_router(candidats_router)
 #app.include_router(recruteurs_router)
 #app.include_router(offres_router)
