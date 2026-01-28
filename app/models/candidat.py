@@ -4,7 +4,6 @@ from sqlalchemy.sql import func
 
 from app.core.database import Base
 
-
 class Candidat(Base):
     __tablename__ = "candidats"
 

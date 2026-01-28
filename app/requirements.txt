@@ -1,0 +1,33 @@
+# --- FastAPI ---
+fastapi
+uvicorn
+
+# --- DB ---
+sqlalchemy
+psycopg2-binary
+
+# --- Auth ---
+python-jose
+passlib[bcrypt]
+bcrypt==4.0.1
+
+# --- Utils ---
+python-dotenv
+python-multipart
+requests
+
+# --- Validation ---
+pydantic
+
+# --- CV analysis ---
+PyPDF2
+
+# --- LangChain / LLM ---
+langchain
+langchain-core
+langchain-groq
+openai
+
+# --- Vector store ---
+chromadb
+sentence-transformers

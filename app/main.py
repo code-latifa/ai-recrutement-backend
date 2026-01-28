@@ -8,6 +8,7 @@ from app.utils.logger import setup_logging
 from app.api.auth import router as auth_router
 from app.api.cv import router as cv_router          # ✅ AJOUT
 from app.api.offres import router as offres_router  # ✅ AJOUT
+from app.api.matching import router as matching_router
 # from app.api.candidats import router as candidats_router
 # from app.api.recruteurs import router as recruteurs_router
 # from app.api.offres import router as offres_router
@@ -41,11 +42,19 @@ app.add_middleware(
 )
 
 # -------------------------------------------------
+# Root route (pour éviter le 404 sur /)
+# -------------------------------------------------
+@app.get("/")
+def root():
+    return {"message": "Bienvenue sur l'API AI Recruitment"}
+
+# -------------------------------------------------
 # Health check
 # -------------------------------------------------
 @app.get("/health", tags=["Health"])
 def health():
     return {"status": "ok"}
+
 
 # -------------------------------------------------
 # API Routers
@@ -57,5 +66,5 @@ app.include_router(offres_router)      # ✅ AJOUT
 #app.include_router(recruteurs_router)
 #app.include_router(offres_router)
 #app.include_router(candidatures_router)
-#app.include_router(matching_router)
+app.include_router(matching_router)
 #app.include_router(notifications_router)
