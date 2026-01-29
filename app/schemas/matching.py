@@ -1,3 +1,4 @@
+
 """
 Schémas Pydantic pour les réponses de matching
 """

@@ -1,3 +1,4 @@
+
 """
 Moteur de matching CV-Offre
 Membre 5 - Niveau 2
@@ -7,7 +8,7 @@ Orchestre : scoring + embeddings + explications IA
 from typing import Dict, List, Optional
 import numpy as np
 
-from app.utils.Scoring import (
+from app.utils.scoring import (
     calculer_score_final,
     determiner_recommandation
 )
