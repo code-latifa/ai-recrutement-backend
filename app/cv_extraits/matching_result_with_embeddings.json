@@ -1,0 +1,68 @@
+{
+  "matching_direct": {
+    "score_final": 88.14,
+    "recommandation": "EXCELLENT",
+    "details": {
+      "similarite_semantique": 90.35,
+      "competences": {
+        "score": 100.0,
+        "trouvees": [
+          "Python"
+        ],
+        "manquantes": []
+      },
+      "experience": {
+        "score": 100.0,
+        "annees_candidat": 0,
+        "annees_requises": 0
+      },
+      "formation": {
+        "score": 20.0,
+        "niveau_candidat": 0,
+        "niveau_requis": 3
+      },
+      "langues": {
+        "score": 100.0,
+        "trouvees": [
+          "Français"
+        ],
+        "manquantes": []
+      }
+    },
+    "explications": {
+      "pour_recruteur": {
+        "points_forts": [
+          "Compétences techniques en Python",
+          "Expérience requise nulle, ce qui convient au poste de Junior",
+          "Maîtrise de la langue française"
+        ],
+        "points_faibles": [
+          "Faible niveau de formation (20%)",
+          "Manque d'expérience professionnelle"
+        ],
+        "recommandation": "RECRUTER",
+        "synthese": "Le candidat présente un excellent profil technique et linguistique pour le poste de Développeur Python Junior, malgré un niveau de formation limité. Sa compétence en Python et sa maîtrise du français sont des atouts majeurs. Le score de matching élevé (88,14%) justifie une recommandation de recrutement."
+      },
+      "pour_candidat": {
+        "message_principal": "Félicitations ! Votre profil correspond très bien à l'offre d'emploi de Développeur Python Junior, avec un score de matching de 88,14%. Vous avez toutes les compétences requises et votre niveau d'expérience est adéquat pour ce poste.",
+        "compétences_valorises": [
+          "Python",
+          "Français"
+        ],
+        "axes_d'amélioration": [
+          "Aucune compétence manquante détectée, mais il est toujours possible de renforcer ses connaissances en Python et de développer de nouvelles compétences complémentaires."
+        ],
+        "conseils_concrets": [
+          "Poursuivez votre apprentissage en Python en explorant de nouveaux frameworks et bibliothèques pour élargir vos possibilités de développement.",
+          "Considérez la possibilité de réaliser des projets personnels ou de contribuer à des projets open source pour acquérir de l'expérience pratique et démontrer vos compétences.",
+          "Mettez en avant vos réalisations et vos projets sur des plateformes comme GitHub ou GitLab pour que les recruteurs puissent facilement évaluer vos compétences."
+        ]
+      }
+    }
+  },
+  "recherche_vectorielle": {
+    "cv_id": "cv_test_export",
+    "distance": 1.0443145036697388,
+    "similarite": -0.04431450366973877
+  }
+}

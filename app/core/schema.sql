@@ -157,3 +157,11 @@ CREATE TRIGGER trg_validate_email
 BEFORE INSERT OR UPDATE ON utilisateurs
 FOR EACH ROW
 EXECUTE FUNCTION validate_email();
+-- Ajouter json_structure à cvs (si pas déjà fait)
+ALTER TABLE cvs 
+ADD COLUMN IF NOT EXISTS embedding vector(1536);
+
+-- Ajouter json_structure et embedding à offres_emploi
+ALTER TABLE offres_emploi 
+ADD COLUMN IF NOT EXISTS json_structure JSONB,
+ADD COLUMN IF NOT EXISTS embedding vector(1536);

@@ -1,38 +1,25 @@
 from typing import List
-from openai import OpenAI
+from sentence_transformers import SentenceTransformer
 
-from app.core.config import settings
-
-
-# Client OpenAI (1 seule instance)
-client = OpenAI(api_key=settings.OPENAI_API_KEY)
+# Modèle local (1 seule instance)
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
 def embed_text(text: str) -> List[float]:
     """
-    Génère l'embedding d'un seul texte
+    Génère l'embedding d'un seul texte (LOCAL)
     """
     if not text or not text.strip():
         raise ValueError("Texte vide pour embedding")
 
-    response = client.embeddings.create(
-        model=settings.EMBEDDING_MODEL,
-        input=text
-    )
-
-    return response.data[0].embedding
+    return model.encode(text).tolist()
 
 
 def embed_texts(texts: List[str]) -> List[List[float]]:
     """
-    Génère les embeddings pour plusieurs textes
+    Génère les embeddings pour plusieurs textes (LOCAL)
     """
     if not texts:
         return []
 
-    response = client.embeddings.create(
-        model=settings.EMBEDDING_MODEL,
-        input=texts
-    )
-
-    return [item.embedding for item in response.data]
+    return model.encode(texts).tolist()
